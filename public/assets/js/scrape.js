@@ -13,6 +13,7 @@ var data = function() {
 
         $("p.title").each(function(i, element) {
             var headline = $(element).text().trim();
+            $("#articles").text("headline");
             var link = $(element).children().attr("href");
             //var summary = $(element).children(".summary").attr();
 
@@ -21,6 +22,7 @@ var data = function() {
                 //summary: summary,
                 link: link
             });
+
         });
         console.log(results);
     });
