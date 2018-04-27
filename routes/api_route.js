@@ -1,10 +1,13 @@
 var db = require("../models");
 var articles = require("../models/Article.js");
 var router = require("express").Router();
+var scrape = require("../scrape/scrape.js");
 
-router.get("/", function(req, res) {
-    res.send(articles.headlines)
+router.post("/scrape", function(req, res) {
+    res.json(scrape)
+
 });
 
+console.log(scrape);
 
 module.exports = router;

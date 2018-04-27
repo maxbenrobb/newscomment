@@ -6,7 +6,7 @@ var mongoose = require("mongoose");
 var bodyParser = require("body-parser");
 
 var app = express();
-// var scrape = require("./assets/js/scrape.js")
+var scrape = require("./scrape/scrape.js")
 var apiroutes = require("./routes/api_route.js");
 var htmlroutes = require("./routes/html_route.js");
 
@@ -17,7 +17,9 @@ var savedDB = ["savedData"];
 
 app.use(express.static('public'));
 
-mongoose.connect("mongodb://localhost:27017/newsdb")
+mongoose.Promise = Promise;
+
+mongoose.connect("mongodb://localhost/newsdb")
 var db = mongoose.connection;
 db.on("error", function(error) {
     console.log("Database Error: ", error);
@@ -34,4 +36,4 @@ app.listen(3000, function() {
     console.log("App running on port 3000!");
 })
 
-// scrape();
+scrape();

@@ -1,5 +1,6 @@
 var cheerio = require("cheerio");
 var request = require("request");
+var models = require("../models")
 
 console.log("\n***********************************\n" +
 "Grabbing every article\n" +
@@ -17,14 +18,21 @@ var data = function() {
             var link = $(element).children().attr("href");
             //var summary = $(element).children(".summary").attr();
 
-            results.push({
+            results = ({
                 headline: headline,
                 //summary: summary,
                 link: link
             });
-
+            models.Article.create(results)
+            .then(function(newsdb) {
+            console.log(newsdb);
+            })
+            .catch(function(err) {
+                return console.log(err);
+            });
         });
-        console.log(results);
+
+        // document.getElementById("articles").innerHTML=results;
     });
 };
 module.exports = data;
